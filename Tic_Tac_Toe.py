@@ -54,8 +54,11 @@ def get_player1_move():
     move = 0
     valid_move = True
     while move < 1 or move > 9 and valid_move:
-        move = int(input("Player "+player1+" please input your move 1-9"))
-        if game_board[move] == ' ':
+        try:
+            move = int(input("Player "+player1+" please input your move 1-9 s"))
+        except ValueError:
+            move = 0
+        if move > 0 and move < 10 and game_board[move] == ' ':
             valid_move = True
         else:
             valid_move = False
@@ -73,9 +76,13 @@ def get_player2_move():
     move = 0
     valid_move = True
     while move < 1 or move > 9 and valid_move:
-        move = int(input("Player "+player2+" please input your move 1-9"))
-        print(game_board[move])
-        if game_board[move] == ' ':
+        try:
+            move = int(input("Player "+player2+" please input your move 1-9"))
+            print(game_board[move])
+        except ValueError:
+            move = 0
+
+        if move > 0 and move < 10 and game_board[move] == ' ':
             valid_move = True
         else:
             valid_move = False
